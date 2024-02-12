@@ -16,6 +16,8 @@ RUN apt-get update && \
       git \
       libatlas-base-dev \
       libboost-all-dev \
+      libcanberra-gtk-module \
+      libcanberra-gtk3-module \
       libeigen3-dev \
       libgflags-dev \
       libgoogle-glog-dev \
