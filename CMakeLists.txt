@@ -5,6 +5,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Don't do glog checks, some of these fail
+add_compile_definitions(NDEBUG)
+
+# Check for build type and set GTSAM_ENABLE_DEBUG if in Debug mode
+# Allows for GTSAM debug output
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(GTSAM_ENABLE_DEBUG)
+endif()
+
 # Make sure that custom modules like FindXXXX are found
 # Prefer to use system installation of gflags/glog
 set(GFLAGS_PREFER_EXPORTED_GFLAGS_CMAKE_CONFIGURATION TRUE)

@@ -12,6 +12,7 @@ RUN apt-get update && \
       apt-get install -y \
       build-essential \
       cmake \
+      gdb \
       gfortran \
       git \
       libatlas-base-dev \
@@ -43,7 +44,7 @@ RUN git clone https://github.com/borglab/gtsam.git && \
       -DGTSAM_BUILD_WITH_MARCH_NATIVE=OFF \
       -DGTSAM_BUILD_TESTS=OFF \
       -DGTSAM_BUILD_EXAMPLES_ALWAYS=OFF \
-      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_BUILD_TYPE=Debug \
       -DGTSAM_BUILD_UNSTABLE=ON \
       -DGTSAM_POSE3_EXPMAP=ON \
       -DGTSAM_ROT3_EXPMAP=ON \
@@ -83,6 +84,10 @@ RUN cd Kimera-RPGO && \
       cmake .. && \
       make -j$(nproc) install
 
-# Install Kimera-VIO
-RUN git clone https://github.com/MIT-SPARK/Kimera-VIO.git
-RUN cd Kimera-VIO && mkdir build && cd build && cmake .. && make -j$(nproc)
+# # Install Kimera-VIO
+# RUN git clone https://github.com/MIT-SPARK/Kimera-VIO.git
+# RUN cd Kimera-VIO && \
+#       mkdir build && \
+#       cd build && \
+#       cmake -DCMAKE_BUILD_TYPE=Debug .. && \
+#       make -j$(nproc)

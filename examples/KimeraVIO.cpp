@@ -41,6 +41,8 @@ DEFINE_string(
     "Path to the folder containing the yaml files with the VIO parameters.");
 
 int main(int argc, char* argv[]) {
+  // Enable GTSAM debug output for incremental fixed-lag smoother.
+  SETDEBUG("IncrementalFixedLagSmoother update", true);
   // Initialize Google's flags library.
   google::ParseCommandLineFlags(&argc, &argv, true);
   // Initialize Google's logging library.
@@ -132,7 +134,7 @@ int main(int argc, char* argv[]) {
         vio_pipeline,
         [&dataset_parser]() -> bool { return !dataset_parser->hasData(); },
         500,
-        true);
+        false); // disable stats printing
     vio_pipeline->spinViz();
     is_pipeline_successful = !handle.get();
     handle_shutdown.get();

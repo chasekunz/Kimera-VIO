@@ -1,0 +1,24 @@
+{
+  "name": "Kimera-VIO",
+  "image": "kimera_vio",
+  "runArgs": [
+    "--env=DISPLAY",
+    "--env=QT_X11_NO_MITSHM=1",
+    "--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "--volume=/dev/dri:/dev/dri",
+    "--volume=/home/chase/Downloads/euroc_datasets/:/data/datasets/Euroc"
+  ],
+  "workspaceMount": "src=${localWorkspaceFolder},dst=/root/Kimera-VIO,type=bind,consistency=cached",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "terminal.integrated.cwd": "/root/Kimera-VIO"
+  },
+  "extensions": [
+    "ms-vscode.cpptools",
+    "ms-python.python",
+    "ms-vscode.cmake-tools",
+    "mhutchie.git-graph",
+  ],
+  "postCreateCommand": "cd /root/Kimera-VIO",
+  "remoteUser": "root"
+}
